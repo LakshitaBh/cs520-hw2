@@ -85,11 +85,17 @@ public class ExpenseTrackerView extends JFrame {
     // Add panels to frame
     add(inputPanel, BorderLayout.NORTH);
     add(new JScrollPane(transactionsTable), BorderLayout.CENTER); 
-    add(buttonPanel, BorderLayout.WEST);
-    add(filterPanel, BorderLayout.SOUTH);
+    // to stack buttonPanel and filterPanel one below the other we create a new panel for it
+    JPanel southPanel = new JPanel();
+    southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.Y_AXIS));
+    southPanel.add(buttonPanel);
+    southPanel.add(Box.createVerticalStrut(10)); // You can adjust the spacing as needed
+    southPanel.add(filterPanel);
+    add(southPanel, BorderLayout.SOUTH);
+
   
     // Set frame properties
-    setSize(1000, 800);
+    setSize(800, 600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   
