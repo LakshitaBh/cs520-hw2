@@ -34,6 +34,34 @@ public class ExpenseTrackerApp {
       }
     });
 
+    // Handle amount filter button clicks
+    view.getAmountFilterBtn().addActionListener(e -> {
+      // Get transaction data from view
+      double amount = view.getAmountFilterField();
+      
+      // Call controller to add transaction
+      boolean added = controller.applyFilter("Amount", amount);
+      
+      if (!added) {
+        JOptionPane.showMessageDialog(view, "Invalid amount entered");
+        view.toFront();
+      }
+    });
+
+    // Handle category filter button clicks
+    view.getCategoryFilterBtn().addActionListener(e -> {
+      // Get transaction data from view
+      String category = view.getCategoryFilterField();
+      
+      // Call controller to add transaction
+      boolean added = controller.applyFilter("Category", category);
+      
+      if (!added) {
+        JOptionPane.showMessageDialog(view, "Invalid category entered");
+        view.toFront();
+      }
+    });
+
   }
 
 }
