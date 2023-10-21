@@ -7,6 +7,7 @@ import view.ExpenseTrackerView;
 import model.Transaction;
 import controller.InputValidation;
 import java.util.List;
+import java.util.ArrayList;
 
 
 public class ExpenseTrackerApp {
@@ -68,6 +69,7 @@ public class ExpenseTrackerApp {
     view.getResetBtn().addActionListener(e -> { 
       List<Transaction> transactions = model.getTransactions();
       view.refreshTable(transactions);
+      view.highlightMatchingRows(new ArrayList<Integer>());
     });
 
   }

@@ -12,12 +12,14 @@ public class CategoryFilter implements TransactionFilter {
     }
 
     @Override
-    public List<Transaction> filter(List<Transaction> transactions) {
-        List<Transaction> filteredTransactions = new ArrayList<>();
+    public List<Integer> filter(List<Transaction> transactions) {
+        List<Integer> filteredTransactions = new ArrayList<>();
 
-        for (Transaction transaction : transactions) {
+        // for (Transaction transaction : transactions) {
+        for (int i=0; i<transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
             if (transaction.getCategory().equalsIgnoreCase(categoryToFilter)) {
-                filteredTransactions.add(transaction);
+                filteredTransactions.add(i);
             }
         }
 

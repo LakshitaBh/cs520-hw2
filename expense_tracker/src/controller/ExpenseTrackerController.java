@@ -3,6 +3,7 @@ package controller;
 import view.ExpenseTrackerView;
 
 import java.util.List;
+import java.util.ArrayList;
 
 
 
@@ -49,6 +50,10 @@ public class ExpenseTrackerController {
   
   // Other controller methods
   public boolean applyFilter(String filterType, double filterValue) {
+    // List<Integer> rowIdxs = new ArrayList<>();
+    // rowIdxs.add(1);
+    // view.highlightMatchingRows(rowIdxs);
+
     List<Transaction> transactions = model.getTransactions();
     AmountFilter filter  = null;
     if ("Amount".equals(filterType)) {
@@ -60,8 +65,8 @@ public class ExpenseTrackerController {
     }
 
     if (filter != null) {
-        List<Transaction> filteredTransactions = filter.filter(transactions);
-        highlightMatchingRows(filteredTransactions);
+        List<Integer> filteredTransactions = filter.filter(transactions);
+        view.highlightMatchingRows(filteredTransactions);
     }
 
     return true;
@@ -72,22 +77,19 @@ public boolean applyFilter(String filterType, String filterValue) {
     CategoryFilter filter  = null;
 
     if ("Category".equals(filterType)) {
-        if (!InputValidation.isValidCategory(filterType)) {
+        if (!InputValidation.isValidCategory(filterValue)) {
             return false;
         }
         filter = new CategoryFilter(filterValue);
     }
 
     if (filter != null) {
-        List<Transaction> filteredTransactions = filter.filter(transactions);
-        highlightMatchingRows(filteredTransactions);
+        List<Integer> filteredTransactions = filter.filter(transactions);
+        view.highlightMatchingRows(filteredTransactions);
     }
 
     return true;
 }
 
-  private void highlightMatchingRows(List<Transaction> filteredTransactions) {
-      
-  }
 
 }

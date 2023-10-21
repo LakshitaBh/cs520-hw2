@@ -11,6 +11,12 @@ import java.text.NumberFormat;
 
 import model.Transaction;
 import java.util.List;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.util.ArrayList;
+
 
 public class ExpenseTrackerView extends JFrame {
 
@@ -177,5 +183,24 @@ public class ExpenseTrackerView extends JFrame {
 
   public void setCategoryField(JTextField categoryField) {
     this.categoryField = categoryField;
+  }
+  public void highlightMatchingRows(List<Integer> rowIdxs) {
+    transactionsTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+      @Override
+      public Component getTableCellRendererComponent(
+          JTable table, Object value, boolean isSelected,
+          boolean hasFocus, int row, int column){
+            Component c = super.getTableCellRendererComponent(
+                table, value, isSelected, hasFocus, row, column);
+            if(rowIdxs.contains(row)){
+              c.setBackground(new Color(173,255,168));
+            }
+            else{
+              c.setBackground(Color.WHITE);
+            }
+            return c;
+          }
+    });
+    transactionsTable.updateUI();
   }
 }
