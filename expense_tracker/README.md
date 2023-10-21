@@ -1,5 +1,11 @@
 # hw1- Manual Review
 
+Students:
+Lakshita Bhargava
+Kartik Choudhary
+
+Github: https://github.com/LakshitaBh/cs520-hw2
+
 The homework will be based on this project named "Expense Tracker",where users will be able to add/remove daily transaction. 
 
 ## Compile
