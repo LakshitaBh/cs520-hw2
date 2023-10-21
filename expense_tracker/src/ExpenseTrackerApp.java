@@ -6,6 +6,8 @@ import model.ExpenseTrackerModel;
 import view.ExpenseTrackerView;
 import model.Transaction;
 import controller.InputValidation;
+import java.util.List;
+
 
 public class ExpenseTrackerApp {
 
@@ -60,6 +62,12 @@ public class ExpenseTrackerApp {
         JOptionPane.showMessageDialog(view, "Invalid category entered");
         view.toFront();
       }
+    });
+
+    // Handle reset button clicks
+    view.getResetBtn().addActionListener(e -> { 
+      List<Transaction> transactions = model.getTransactions();
+      view.refreshTable(transactions);
     });
 
   }
